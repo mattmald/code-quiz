@@ -24,6 +24,7 @@ const init = () => {
 function getQuestion () {
     let currentQuestion = questions[index];
     console.log(currentQuestion) 
+    choicesEl.innerHTML = ""
 
     document.getElementById('question').innerText = currentQuestion.Q;
     for ( var i = 0; i < currentQuestion.A.length; i++ ) { 
@@ -39,9 +40,9 @@ function getQuestion () {
 
 function questionClick(event) {
     var buttonEl = event.target;
-    if(!buttonEl.matches('.choice')) {
-        return;
-    }
+    // if(!buttonEl.matches('.choice')) {
+    //     return;
+    // }
     if(buttonEl.value !== questions[index].C) {
         time -=10;
         console.log(buttonEl.value,"button")

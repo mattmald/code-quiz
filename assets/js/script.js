@@ -24,7 +24,7 @@ const init = () => {
 function getQuestion () {
     let currentQuestion = questions[index];
     console.log(currentQuestion) 
-    choicesEl.innerHTML = ""
+  
 
     document.getElementById('question').innerText = currentQuestion.Q;
     for ( var i = 0; i < currentQuestion.A.length; i++ ) { 

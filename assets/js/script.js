@@ -2,6 +2,7 @@ let time = 60;
 let timeId;
 const main = document.querySelector('main');
 const choiceEl = document.getElementById('choices')
+var rightEl = document.getElementById("rightWrong")
 var index = 0
 
 //timer
@@ -17,8 +18,7 @@ const downTime = () => {
 const init = () => {
    timeId = setInterval(downTime,1000);
     main.innerHTML = '';
-
-  
+    getQuestion()
 };
 
 function getQuestion () {
@@ -32,21 +32,22 @@ function getQuestion () {
         choicesBut.setAttribute('class', 'choices')
         choicesBut.setAttribute('value', choice)
         choicesBut.textContent = i + 1 + ': ' + choice
+         choicesBut.addEventListener("click", questionClick)
         choiceEl.appendChild(choicesBut)
     }
 }
 
 function questionClick(event) {
     var buttonEl = event.target;
-
     if(!buttonEl.matches('.choice')) {
         return;
     }
-
     if(buttonEl.value !== questions[index].C) {
         time -=10;
+        console.log(buttonEl.value,"button")
+        rightEl.textContent = "incorrect.."
     } else  {
-        
+        rightEl.textContent = "Correct!"
     }
 
     index++
@@ -63,8 +64,8 @@ function questionClick(event) {
 }
 
 document.getElementById('start').addEventListener('click', init);
-choiceEl.onclick = questionClick
-
+// choiceEl.onclick = questionClick
+// choicesBut.addEventListener("click", questionClick)
 // [] ---> array initialized by a variable aka cont array = [] OR [] accessor to the array aka questions[0] is the index of my value
 // () only used to initialize a method or function aka getQuestion() or filter()/map()
 // . accesses properties of current value aka const dog = {id: 2, name: dog, sound: bark} const bark = dog.sound  OR I use this to access built in methods aka dog.map(index, value ) => { value.sound}

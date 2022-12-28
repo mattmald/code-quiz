@@ -21,12 +21,14 @@ const init = () => {
     getQuestion()
 };
 
+//fuction to get the questions and answers 
 function getQuestion () {
     let currentQuestion = questions[index];
     console.log(currentQuestion) 
   
 
     document.getElementById('question').innerText = currentQuestion.Q;
+    choiceEl.innerHTML = ""
     for ( var i = 0; i < currentQuestion.A.length; i++ ) { 
         var choice = currentQuestion.A[i]
         var choicesBut = document.createElement('button')
@@ -38,11 +40,9 @@ function getQuestion () {
     }
 }
 
+//clicking the button
 function questionClick(event) {
     var buttonEl = event.target;
-    // if(!buttonEl.matches('.choice')) {
-    //     return;
-    // }
     if(buttonEl.value !== questions[index].C) {
         time -=10;
         console.log(buttonEl.value,"button")
@@ -52,8 +52,8 @@ function questionClick(event) {
     }
 
     index++
-    //end quiz function 
-
+   
+ //end quiz function 
     if (time <= 0 || index === questions.length)
     {
         clearInterval(init)
@@ -65,8 +65,3 @@ function questionClick(event) {
 }
 
 document.getElementById('start').addEventListener('click', init);
-// choiceEl.onclick = questionClick
-// choicesBut.addEventListener("click", questionClick)
-// [] ---> array initialized by a variable aka cont array = [] OR [] accessor to the array aka questions[0] is the index of my value
-// () only used to initialize a method or function aka getQuestion() or filter()/map()
-// . accesses properties of current value aka const dog = {id: 2, name: dog, sound: bark} const bark = dog.sound  OR I use this to access built in methods aka dog.map(index, value ) => { value.sound}
